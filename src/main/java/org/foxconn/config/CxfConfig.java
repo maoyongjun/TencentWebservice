@@ -27,7 +27,7 @@ public class CxfConfig {
 		SpringJAXRSServerFactoryBean restFactory = new SpringJAXRSServerFactoryBean();
 		restFactory.setServiceClass(RestService.class);
 		restFactory.setServiceBean(service);
-		restFactory.setAddress("/restServices");
+		restFactory.setAddress("/tencent");
 		restFactory.setBus(bus);
 		
 		restFactory.getInInterceptors().add(new LoggingInInterceptor());

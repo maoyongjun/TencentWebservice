@@ -2,21 +2,56 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
  <mapper namespace="org.foxconn.dao.WebServiceDao">
- 	<select id="getSSNStatus"  parameterType="string" 
- 	resultType="org.foxconn.entity.ResultMessage" statementType="CALLABLE">
+ 	<select id="getSSNStatus"  parameterType="map" statementType="CALLABLE">
  		<![CDATA[
-		    {call findTDMACByssn_sp
-		     (#{tranType,mode=IN,jdbcType=VARCHAR})
+		    {call efoxsfcGetSSNSTATUSBySSNsel_sp
+		     (#{plant,mode=IN,jdbcType=VARCHAR},
+		      #{ssn,mode=IN,jdbcType=VARCHAR},
+		      #{retflag,mode=OUT,jdbcType=VARCHAR},
+		      #{retmsg,mode=OUT,jdbcType=VARCHAR}
+		     )
 		     }
 		]]>
  	</select>
-<!--  	<select id="updateSSNStatus"  parameterType="string"  -->
-<!--  	resultType="org.foxconn.report.testFruTd.entity.TestFruTdResult" statementType="CALLABLE"> -->
-<!--  		<![CDATA[ -->
-<!-- 		    {call findTDMACByssn_sp -->
-<!-- 		     (#{tranType,mode=IN,jdbcType=VARCHAR}) -->
-<!-- 		     } -->
-<!-- 		]]> -->
-<!--  	</select> -->
+ 	
+	<select id="getSSNStatus"  parameterType="map" statementType="CALLABLE">
+ 		<![CDATA[
+		    {call eFoxSFCUpdateSSNStatusBySSN_ali
+		     (	#{strPlantCode,mode=IN,jdbcType=VARCHAR},
+				#{strSSN,mode=IN,jdbcType=VARCHAR},
+				#{strFixtureID,mode=IN,jdbcType=VARCHAR},
+				#{strTestResult,mode=IN,jdbcType=VARCHAR},
+				#{strErrorCode,mode=IN,jdbcType=VARCHAR},
+				#{strFailDetailReason,mode=IN,jdbcType=VARCHAR},
+				#{strTestDatatime,mode=IN,jdbcType=VARCHAR},
+				#{strEMPID,mode=IN,jdbcType=VARCHAR},
+				#{strDIAG,mode=IN,jdbcType=VARCHAR},
+				#{strCurStation,mode=IN,jdbcType=VARCHAR},
+				#{strLineName,mode=IN,jdbcType=VARCHAR},
+				#{strField1,mode=IN,jdbcType=VARCHAR},
+				#{strField2,mode=IN,jdbcType=VARCHAR},
+				#{strField3,mode=IN,jdbcType=VARCHAR},
+				#{strActionCode,mode=IN,jdbcType=VARCHAR},
+				#{strActionDesc,mode=IN,jdbcType=VARCHAR},
+				#{strReplacePN,mode=IN,jdbcType=VARCHAR},
+				#{strFailCSN,mode=IN,jdbcType=VARCHAR},
+				#{strNewCSN,mode=IN,jdbcType=VARCHAR},
+				#{strField4,mode=IN,jdbcType=VARCHAR},
+				#{strField5,mode=IN,jdbcType=VARCHAR},
+				#{strField6,mode=IN,jdbcType=VARCHAR},
+				#{strField7,mode=IN,jdbcType=VARCHAR},
+				#{strField8,mode=IN,jdbcType=VARCHAR},
+				#{strField9,mode=IN,jdbcType=VARCHAR},
+				#{strAtoTestLogname,mode=IN,jdbcType=VARCHAR},
+				#{strAtoTestParam,mode=IN,jdbcType=VARCHAR},
+				#{strATOTestApplicationVersion,mode=IN,jdbcType=VARCHAR},
+				#{strClientIp  ,mode=IN,jdbcType=VARCHAR},
+				#{strWebUrl ,mode=IN,jdbcType=VARCHAR},
+				#{retflag,mode=OUT,jdbcType=VARCHAR},
+		      	#{retmsg,mode=OUT,jdbcType=VARCHAR}
+		     )
+		     }
+		]]>
+ 	</select>
  </mapper>        
  

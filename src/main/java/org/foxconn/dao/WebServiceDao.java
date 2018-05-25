@@ -1,7 +1,9 @@
 package org.foxconn.dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
-import org.foxconn.entity.ResultMessage;
+import org.foxconn.entity.Msg;
 
 /**
 * @author:myz
@@ -10,6 +12,6 @@ import org.foxconn.entity.ResultMessage;
 */
 @Mapper
 public interface WebServiceDao {
-	public ResultMessage getSSNStatus(); 
-//	public UpdateResultMessage updateSSNStatus(TestResult testResult);
+	public void getSSNStatus(Map<String,String> map); 
+	public void updateSSNStatus(Map<String,String> map);
 }
