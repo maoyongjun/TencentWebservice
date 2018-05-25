@@ -14,7 +14,7 @@
 		]]>
  	</select>
  	
-	<select id="getSSNStatus"  parameterType="map" statementType="CALLABLE">
+	<select id="updateSSNStatus"  parameterType="map" statementType="CALLABLE">
  		<![CDATA[
 		    {call eFoxSFCUpdateSSNStatusBySSN_ali
 		     (	#{strPlantCode,mode=IN,jdbcType=VARCHAR},
