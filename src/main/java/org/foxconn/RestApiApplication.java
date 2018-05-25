@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("org.foxconn.dao")
-public class CxfApplication {
+public class RestApiApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(CxfApplication.class,args);
+		SpringApplication.run(RestApiApplication.class,args);
 	}
 }
