@@ -75,6 +75,7 @@ public class RestService{
 		map.put("strWebUrl",result.getStrWebUrl ());
 		map.put("retflag", "");
 		map.put("retmsg", "");
+		dao.updateSSNStatus(map);
 		Msg msg=new Msg();
 		msg.setRetflag(map.get("retflag"));
 		msg.setRetmsg(map.get("retmsg"));
