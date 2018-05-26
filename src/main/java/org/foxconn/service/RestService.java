@@ -26,6 +26,7 @@ public class RestService{
 	@RequestMapping(value="/{strPlantCode}/{strSSN}", method=RequestMethod.GET,produces = "application/json; charset=UTF-8") 
 	@ResponseBody
 	public Msg getSSN(@PathVariable(value="strPlantCode")String plant,@PathVariable(value="strSSN")String ssn) {
+		logger.info("strPlantCode:"+plant+",strSSN:"+ssn);
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("plant", plant);
 		map.put("ssn", ssn);
@@ -48,7 +49,7 @@ public class RestService{
 	}
 	@RequestMapping(value="", method=RequestMethod.POST,consumes="application/json; charset=UTF-8",produces = "application/json; charset=UTF-8") 
 	public Msg updateSSN(@RequestBody Result result){
-		System.out.println( result.toString());
+		logger.info(result.toString());
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("strPlantCode",result.getStrPlantCode());
 		map.put("strSSN",result.getStrSSN());
