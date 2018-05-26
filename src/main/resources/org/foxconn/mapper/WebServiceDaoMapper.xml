@@ -16,7 +16,7 @@
  	
 	<select id="updateSSNStatus"  parameterType="map" statementType="CALLABLE">
  		<![CDATA[
-		    {call eFoxSFCUpdateSSNStatusBySSN_ali
+		    {call eFoxSFCUpdateSSNStatusBySSN_tencent
 		     (	#{strPlantCode,mode=IN,jdbcType=VARCHAR},
 				#{strSSN,mode=IN,jdbcType=VARCHAR},
 				#{strFixtureID,mode=IN,jdbcType=VARCHAR},
