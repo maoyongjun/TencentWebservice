@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.foxconn.dao.WebServiceDao;
 import org.foxconn.entity.Msg;
 import org.foxconn.entity.Result;
@@ -18,14 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/efoxsfcSSNSTATUS")
 public class RestService{
+	Logger logger = Logger.getLogger(RestService.class);
 	@Resource
 	private WebServiceDao dao;
 	
-	public void setDao(WebServiceDao dao){
-		this.dao = dao;
-	}
-	
-	@RequestMapping(value="/{strPlantCode}/{strSSN}", method=RequestMethod.GET) 
+	@RequestMapping(value="/{strPlantCode}/{strSSN}", method=RequestMethod.GET,produces = "application/json; charset=UTF-8") 
 	@ResponseBody
 	public Msg getSSN(@PathVariable(value="strPlantCode")String plant,@PathVariable(value="strSSN")String ssn) {
 		Map<String,String> map = new HashMap<String,String>();
@@ -33,13 +31,22 @@ public class RestService{
 		map.put("ssn", ssn);
 		map.put("retflag", "");
 		map.put("retmsg", "");
-		dao.getSSNStatus( map);
 		Msg msg =new Msg();
+		try {
+			dao.getSSNStatus( map);
+		} catch (Exception e) {
+			msg.setRetflag("1");
+			String errorMsg = e.getCause().toString();
+			logger.error(errorMsg);
+			int length=errorMsg.length();
+			msg.setRetmsg(length>200?errorMsg.substring(0, 200):errorMsg);
+			return msg;
+		}
 		msg.setRetflag(map.get("retflag"));
 		msg.setRetmsg(map.get("retmsg"));
 		return msg;
 	}
-	@RequestMapping(value="", method=RequestMethod.POST,consumes="application/json") 
+	@RequestMapping(value="", method=RequestMethod.POST,consumes="application/json; charset=UTF-8",produces = "application/json; charset=UTF-8") 
 	public Msg updateSSN(@RequestBody Result result){
 		System.out.println( result.toString());
 		Map<String,String> map = new HashMap<String,String>();
@@ -75,8 +82,17 @@ public class RestService{
 		map.put("strWebUrl",result.getStrWebUrl ());
 		map.put("retflag", "");
 		map.put("retmsg", "");
-		dao.updateSSNStatus(map);
 		Msg msg=new Msg();
+		try {
+			dao.updateSSNStatus(map);
+		} catch (Exception e) {
+			msg.setRetflag("1");
+			String errorMsg = e.getCause().toString();
+			logger.error(errorMsg);
+			int length=errorMsg.length();
+			msg.setRetmsg(length>200?errorMsg.substring(0, 200):errorMsg);
+			return msg;
+		}
 		msg.setRetflag(map.get("retflag"));
 		msg.setRetmsg(map.get("retmsg"));
 		return msg;
