@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.foxconn.dao.WebServiceDao;
@@ -22,11 +23,13 @@ public class RestService{
 	Logger logger = Logger.getLogger(RestService.class);
 	@Resource
 	private WebServiceDao dao;
+	@Resource
+	HttpServletRequest request;
 	
 	@RequestMapping(value="/{strPlantCode}/{strSSN}", method=RequestMethod.GET,produces = "application/json; charset=UTF-8") 
 	@ResponseBody
 	public Msg getSSN(@PathVariable(value="strPlantCode")String plant,@PathVariable(value="strSSN")String ssn) {
-		logger.info("strPlantCode:"+plant+",strSSN:"+ssn);
+		logger.info(request.getRemoteAddr()+":"+"strPlantCode:"+plant+",strSSN:"+ssn);
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("plant", plant);
 		map.put("ssn", ssn);
@@ -49,7 +52,7 @@ public class RestService{
 	}
 	@RequestMapping(value="", method=RequestMethod.POST,consumes="application/json; charset=UTF-8",produces = "application/json; charset=UTF-8") 
 	public Msg updateSSN(@RequestBody Result result){
-		logger.info(result.toString());
+		logger.info(request.getRemoteAddr()+":"+result.toString());
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("strPlantCode",result.getStrPlantCode());
 		map.put("strSSN",result.getStrSSN());
