@@ -7,6 +7,7 @@
 		    {call efoxsfcGetSSNSTATUSBySSNsel_sp
 		     (#{plant,mode=IN,jdbcType=VARCHAR},
 		      #{ssn,mode=IN,jdbcType=VARCHAR},
+		      #{l8,mode=IN,jdbcType=VARCHAR},
 		      #{retflag,mode=OUT,jdbcType=VARCHAR},
 		      #{retmsg,mode=OUT,jdbcType=VARCHAR}
 		     )
@@ -41,7 +42,7 @@
 				#{strField6,mode=IN,jdbcType=VARCHAR},
 				#{strField7,mode=IN,jdbcType=VARCHAR},
 				#{strField8,mode=IN,jdbcType=VARCHAR},
-				#{strField9,mode=IN,jdbcType=VARCHAR},
+				#{strField9,mode=IN,jdbcType=LONGVARCHAR},
 				#{strAtoTestLogname,mode=IN,jdbcType=VARCHAR},
 				#{strAtoTestParam,mode=IN,jdbcType=VARCHAR},
 				#{strATOTestApplicationVersion,mode=IN,jdbcType=VARCHAR},

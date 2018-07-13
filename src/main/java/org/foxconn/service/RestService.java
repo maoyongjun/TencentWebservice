@@ -33,6 +33,7 @@ public class RestService{
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("plant", plant);
 		map.put("ssn", ssn);
+		map.put("l8", "Y");
 		map.put("retflag", "");
 		map.put("retmsg", "");
 		Msg msg =new Msg();
