@@ -7,7 +7,6 @@
 		    {call efoxsfcGetSSNSTATUSBySSNsel_sp
 		     (#{plant,mode=IN,jdbcType=VARCHAR},
 		      #{ssn,mode=IN,jdbcType=VARCHAR},
-		      #{l8,mode=IN,jdbcType=VARCHAR},
 		      #{retflag,mode=OUT,jdbcType=VARCHAR},
 		      #{retmsg,mode=OUT,jdbcType=VARCHAR}
 		     )
