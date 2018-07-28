@@ -1,0 +1,8 @@
+<service>
+      <id>tencentWebService</id>
+      <name>tencentWebService</name>
+      <description>To start my app as a service.</description>
+      <executable>java</executable>
+      <arguments>-Xmx512m -jar D:\tencentWebService\TencentWebservice-0.0.1-SNAPSHOT.jar --server.port=2489</arguments>
+      <logmode>rotate</logmode>
+</service>
