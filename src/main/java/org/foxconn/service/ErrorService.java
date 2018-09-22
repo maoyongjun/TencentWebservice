@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 /**
 * @author:myz
 * @version 1.0 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/efoxsfcSSNSTATUS")
 public class ErrorService {
+	@ApiIgnore
 	//当用户输入不完整时给出提示
 	@RequestMapping(value="", method=RequestMethod.GET,produces = "application/json; charset=UTF-8") 
 	@ResponseBody
@@ -25,6 +28,7 @@ public class ErrorService {
 		return msg;
 	}
 	
+	@ApiIgnore
 	@RequestMapping(value="/", method=RequestMethod.GET,produces = "application/json; charset=UTF-8") 
 	@ResponseBody
 	public Msg getSSN() {
@@ -33,6 +37,7 @@ public class ErrorService {
 		msg.setRetmsg("please input SN,example:.../efoxsfcSSNSTATUS/plant/sn");
 		return msg;
 	}
+	@ApiIgnore
 	@RequestMapping(value="/{strPlantCode}", method=RequestMethod.GET,produces = "application/json; charset=UTF-8") 
 	@ResponseBody
 	public Msg getSSN(@PathVariable(value="strPlantCode")String plant) {

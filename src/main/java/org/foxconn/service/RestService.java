@@ -17,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+@Api(value="腾讯  测试 api",tags="SFC交互接口")
 @RestController
 @RequestMapping("/efoxsfcSSNSTATUS")
 public class RestService{
@@ -26,6 +30,7 @@ public class RestService{
 	@Resource
 	HttpServletRequest request;
 	
+	@ApiOperation(value="获取SN的状态")
 	@RequestMapping(value="/{strPlantCode}/{strSSN}", method=RequestMethod.GET,produces = "application/json; charset=UTF-8") 
 	@ResponseBody
 	public Msg getSSN(@PathVariable(value="strPlantCode")String plant,@PathVariable(value="strSSN")String ssn) {
@@ -51,6 +56,7 @@ public class RestService{
 		msg.setRetmsg(map.get("retmsg"));
 		return msg;
 	}
+	@ApiOperation(value="上传测试结果")
 	@RequestMapping(value="", method=RequestMethod.POST,consumes="application/json; charset=UTF-8",produces = "application/json; charset=UTF-8") 
 	public Msg updateSSN(@RequestBody Result result){
 		logger.info(request.getRemoteAddr()+":"+result.toString());
